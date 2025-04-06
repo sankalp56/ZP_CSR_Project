@@ -27,14 +27,16 @@ const Template = ({ title, desc1, desc2, image, formtype, setIsLoggedIn }) => {
       </div>
 
       {/* Single Image Section */}
-      <div className="relative w-[600px] h-[500px] flex justify-center items-center mx-auto">
-        <img
-          src={image}
-          alt="Overlay"
-          loading="lazy"
-          className="absolute w-[558px] h-[490px] object-contain translate-x-4 translate-y-4"
-        />
-      </div>
+   {/* Responsive Image Section */}
+<div className="relative w-full max-w-[600px] aspect-[6/5] md:w-[600px] md:h-[500px] flex justify-center items-center mx-auto mt-8 md:mt-0">
+  <img
+    src={image}
+    alt="Overlay"
+    loading="lazy"
+    className="absolute w-full h-full object-contain translate-x-2 translate-y-2"
+  />
+</div>
+
     </div>
   );
 };

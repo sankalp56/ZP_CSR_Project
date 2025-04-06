@@ -44,10 +44,9 @@ const Navbar = () => {
     <>
       {/* Top logo strip */}
       <div className="flex justify-between items-center bg-white shadow-md px-6 py-2">
-        <img src={VardaanLogo} alt="Vardaan Logo" className="h-20 object-contain" />
+        <img src={VardaanLogo} alt="Vardaan Logo" className="h-24 object-contain" /> {/* Increased height */}
         <img src={ZPLogo} alt="ZP Logo" className="h-20 object-contain" />
       </div>
-
       {/* Main navbar */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-slate-900 to-slate-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center text-white">

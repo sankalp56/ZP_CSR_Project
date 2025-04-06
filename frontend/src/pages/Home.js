@@ -13,13 +13,18 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 via-white to-white text-gray-900">
       {/* Hero Section */}
-      <div className="w-full h-100 overflow-hidden relative">
-        <img
-          src={HomeGIF}
-          alt="Zilla Parishad Sangli Building"
-          className="w-full h-[500px] object-cover"
-        />
-      </div>
+      <div className="relative w-full">
+  <div className="relative w-full aspect-[16/9] md:h-[500px] overflow-hidden">
+    <img
+      src={HomeGIF}
+      alt="Zilla Parishad Sangli Building"
+      className="w-full h-full object-cover object-center transition-transform duration-500 ease-in-out hover:scale-105"
+    />
+
+    {/* Optional: Gradient overlay for better visibility */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+  </div>
+</div>
 
       {/* Vision & Mission Section */}
       <section className="py-12 text-center">
