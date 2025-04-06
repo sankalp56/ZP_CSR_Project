@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+const BASE_URL = "https://api.zpsanglivardaan.in/api/v1/";
 
 const AppealerDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -33,7 +34,7 @@ const AppealerDashboard = () => {
       setLoading(true);
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:4000/api/v1/solar/requests/user', {
+        const response = await axios.get(`https://api.zpsanglivardaan.in/api/v1/solar/requests/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setRequests(response.data.requests || []);
@@ -61,7 +62,7 @@ const AppealerDashboard = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:4000/api/v1/solar/create',
+        `https://api.zpsanglivardaan.in/api/v1/solar/create`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -88,7 +89,7 @@ const AppealerDashboard = () => {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:4000/api/v1/solar/appealer-delete/${requestId}`, {
+      await axios.delete(`https://api.zpsanglivardaan.in/api/v1/solar/appealer-delete/${requestId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(requests.filter((request) => request._id !== requestId));

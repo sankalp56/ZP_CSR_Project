@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SolarCard from "../components/SolarCard";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = process.env.Base_URL;
 
 const Demands = () => {
   const [solarRequests, setSolarRequests] = useState([]);
@@ -14,7 +15,7 @@ const Demands = () => {
   // Fetch all solar requests
   const fetchAllRequests = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/v1/solar/all");
+      const res = await axios.get(`https://api.zpsanglivardaan.in/api/v1/solar/all`);
       setSolarRequests(res.data);
     } catch (err) {
       console.error("Failed to fetch solar requests:", err);
@@ -28,7 +29,7 @@ const Demands = () => {
 
     if (query.length >= 2) {
       try {
-        const res = await axios.get(`http://localhost:4000/api/v1/solar/search?village=${query}`);
+        const res = await axios.get(`https://api.zpsanglivardaan.in/api/v1/solar/search?village=${query}`);
         setVillageSuggestions(res.data);
       } catch (err) {
         console.error("Search error:", err);
@@ -40,7 +41,7 @@ const Demands = () => {
 
   // Apply filters based on selected taluka and department
   const applyFilters = async () => {
-    let url = "http://localhost:4000/api/v1/solar/filter?";
+    let url = `https://api.zpsanglivardaan.in/api/v1/solar/filter?`;
     if (selectedTaluka) url += `taluka=${selectedTaluka}&`;
     if (selectedDept) url += `department=${selectedDept}&`;
 

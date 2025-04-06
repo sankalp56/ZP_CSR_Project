@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const BASE_URL = process.env.Base_URL;
+
 
 const VerifierDashboard = () => {
   const { isAuthenticated, user } = useContext(AuthContext);
@@ -20,7 +22,7 @@ const VerifierDashboard = () => {
 
   const fetchDonations = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/donations/pending");
+      const response = await axios.get(`https://api.zpsanglivardaan.in/api/v1/donations/pending`);
       setDonations(response.data.donations);
     } catch (err) {
       setError("Failed to load donations.");
@@ -32,7 +34,8 @@ const VerifierDashboard = () => {
 
   const handleVerify = async (donationId) => {
     try {
-      await axios.put(`http://localhost:4000/api/v1/donations/verify/${donationId}`);
+
+      await axios.put(`https://api.zpsanglivardaan.in/api/v1/auth/verify/${donationId}`);
       setDonations(donations.filter((donation) => donation.id !== donationId)); // Remove verified donation
     } catch (err) {
       console.error("Verification failed:", err);

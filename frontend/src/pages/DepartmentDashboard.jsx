@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+const BASE_URL = process.env.Base_URL;
 
 const DepartmentDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const DepartmentDashboard = () => {
     const fetchDepartmentRequests = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:4000/api/v1/solar/department-requests', {
+        const response = await axios.get(`https://api.zpsanglivardaan.in/api/v1/solar/department-requests`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setRequests(response.data.requests);
@@ -44,7 +45,7 @@ const DepartmentDashboard = () => {
       const token = localStorage.getItem('token');
       const updatedPercentage = fulfillmentInputs[requestId];
       await axios.put(
-        `http://localhost:4000/api/v1/solar/${requestId}/update-fulfillment`,
+        `https://api.zpsanglivardaan.in/api/v1/solar/${requestId}/update-fulfillment`,
         { fulfillmentPercentage: updatedPercentage },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -63,7 +64,7 @@ const DepartmentDashboard = () => {
   const handleDeleteRequest = async (requestId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:4000/api/v1/solar/head-delete/${requestId}`, {
+      await axios.delete(`https://api.zpsanglivardaan.in/api/v1/solar/head-delete/${requestId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(prevRequests => prevRequests.filter(request => request._id !== requestId));

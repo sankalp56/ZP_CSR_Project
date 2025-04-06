@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+const BASE_URL = process.env.Base_URL;
 
 const SignupForm = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -72,7 +73,7 @@ const SignupForm = ({ setIsLoggedIn }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:4000/api/v1/auth/signup", {
+      const response = await fetch(`https://api.zpsanglivardaan.in/api/v1/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = process.env.Base_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:4000/api/v1/auth/login", { email, password });
+      const res = await axios.post(`https://api.zpsanglivardaan.in/api/v1/auth/login`, { email, password });
 
       if (res.data.success) {
         const { token, user } = res.data;

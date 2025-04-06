@@ -3,6 +3,8 @@ import axios from "axios";
 import SolarCard from "../components/SolarCard";
 import { useNavigate, useLocation } from "react-router-dom";
 
+const BASE_URL = "https://api.zpsanglivardaan.in/api/v1/";
+
 const Demands = () => {
   const [solarRequests, setSolarRequests] = useState([]);
   const [searchVillage, setSearchVillage] = useState("");
@@ -25,7 +27,8 @@ const Demands = () => {
   // Fetch Requests Function
   const fetchRequests = async (page = 1, taluka = "", dept = "", village = "") => {
     try {
-      let url = `http://localhost:4000/api/v1/solar/all?page=${page}`;
+      console.log("Fetching Requests", BASE_URL);
+      let url = `https://api.zpsanglivardaan.in/api/v1/solar/all?page=${page}`;
       const params = [];
       if (taluka) params.push(`taluka=${taluka}`);
       if (dept) params.push(`institutionType=${dept}`);
@@ -55,7 +58,7 @@ const Demands = () => {
     if (query.length >= 2) {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/v1/solar/search-villages?query=${query}`
+          `https://api.zpsanglivardaan.in/api/v1/solar/search-villages?query=${query}`
         );
         setVillageSuggestions(res.data || []);
       } catch (err) {
